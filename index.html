@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuameVoice — Private Local Voice Dictation</title>
+  <meta name="description" content="Push-to-talk voice dictation for Windows (and Linux/macOS). Runs entirely offline using whisper.cpp. No cloud APIs, no audio leaves your machine." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Ambient background orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <span class="nav-logo">QuameVoice</span>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#download" class="nav-download-btn">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge">v1.0.2 — Latest Release</div>
+      <h1 class="hero-title">
+        <span class="gradient-text">Your voice.</span><br />
+        <span>Private. Local.&nbsp;Fast.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Push-to-talk voice dictation that runs entirely on your machine.
+        Press a hotkey, speak, and text appears where your cursor was&nbsp;—&nbsp;no cloud, no uploads, no&nbsp;privacy&nbsp;trade-offs.
+      </p>
+      <div class="hero-actions">
+        <a href="#download" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download for Windows
+        </a>
+        <a href="https://github.com/mistaquame/QuameVoice" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <div class="hero-preview">
+        <div class="preview-glass">
+          <video class="promo-video" autoplay muted loop playsinline poster="assets/promo-thumbnail.jpg">
+            <source src="assets/promo.mp4" type="video/mp4" />
+          </video>
+          <div class="preview-overlay-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title">Why QuameVoice?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">100% Local &amp; Private</h3>
+          <p class="feature-desc">Runs entirely offline using <a href="https://github.com/ggerganov/whisper.cpp" target="_blank" rel="noopener noreferrer" class="feature-link">whisper.cpp</a>. No cloud APIs, no audio ever leaves your machine.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Blazing Fast</h3>
+          <p class="feature-desc">whisper.cpp is 2–5× faster than Python Whisper with ~¼ the RAM. Transcription finishes before you lift your finger.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3 class="feature-title">Push-to-Talk Hotkey</h3>
+          <p class="feature-desc">Press <strong>Alt+Shift+Space</strong> to start recording, press again to stop and paste. Fully configurable to any Ctrl/Alt combination.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3 class="feature-title">Automatic Paste</h3>
+          <p class="feature-desc">Restores focus to your previous window and pastes the transcribed text — no context switching, no extra clicks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3 class="feature-title">21 Languages</h3>
+          <p class="feature-desc">Auto-detect or choose from 21 supported languages including English, Deutsch, Français, Español, 中文, 日本語, and more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🪟</div>
+          <h3 class="feature-title">Cross-Platform</h3>
+          <p class="feature-desc">Windows fully supported with installer. Linux and macOS builds available — build from source or use the release packages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="how-grid">
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-step-num">1</div>
+            <div>
+              <h3 class="how-step-title">Press the hotkey</h3>
+              <p class="how-step-desc">Press <strong>Alt+Shift+Space</strong> (or your custom hotkey). The overlay shows <em>Recording…</em></p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">2</div>
+            <div>
+              <h3 class="how-step-title">Speak naturally</h3>
+              <p class="how-step-desc">Speak into your microphone. Press <strong>Escape</strong> anytime to cancel.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">3</div>
+            <div>
+              <h3 class="how-step-title">Press again to transcribe</h3>
+              <p class="how-step-desc">Press the hotkey again. Recording stops, transcription begins locally.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">4</div>
+            <div>
+              <h3 class="how-step-title">Text appears at your cursor</h3>
+              <p class="how-step-desc">Focus is restored to your previous window and the text is pasted automatically.</p>
+            </div>
+          </div>
+        </div>
+        <div class="how-visual">
+          <div class="preview-glass">
+            <video class="promo-video" autoplay muted loop playsinline poster="assets/promo-thumbnail.jpg">
+              <source src="assets/promo.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="section section-download" id="download">
+    <div class="container">
+      <h2 class="section-title">Download QuameVoice</h2>
+      <p class="download-subtitle">Pick your platform. No Node.js or ffmpeg needed — just download and run.</p>
+
+      <div class="download-cards">
+        <div class="download-card">
+          <div class="download-os-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12v-5l4-2.5 5 2.5v5l-4 2.5-5-2.5z"/><path d="M3 12v5l4 2.5 5-2.5v-5l-4-2.5-5 2.5z"/><path d="M12 12v5l4 2.5 5-2.5v-5l-4-2.5-5 2.5z"/><path d="M12 7l4-2.5 5 2.5v5l-4 2.5-5-2.5v-5z"/></svg>
+          </div>
+          <h3 class="download-card-title">Windows</h3>
+          <p class="download-card-desc">Installer (exe) — fully packaged with everything you need.</p>
+          <div class="download-card-version">v1.0.2</div>
+          <a href="https://github.com/mistaquame/QuameSite/releases/download/v1.0.2/QuameVoice+Setup+1.0.2.exe" class="btn-primary download-btn" id="dl-win">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Installer
+          </a>
+          <div class="download-card-meta">
+            <span>~70 MB</span>
+            <span>Public download</span>
+            <span>Windows 10+</span>
+          </div>
+        </div>
+
+        <div class="download-card">
+          <div class="download-os-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <h3 class="download-card-title">Linux / macOS</h3>
+          <p class="download-card-desc">Clone the repo and build from source. Works on most Linux distros and macOS.</p>
+          <div class="download-card-code">
+            <code>git clone https://github.com/mistaquame/QuameVoice.git<br/>cd QuameVoice<br/>npm install<br/>npm run dist</code>
+          </div>
+          <a href="https://github.com/mistaquame/QuameVoice" target="_blank" rel="noopener noreferrer" class="btn-secondary download-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
+            View on GitHub
+          </a>
+          <div class="download-card-meta">
+            <span>Build from source</span>
+            <span>Node.js ≥ 20</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-info-card">
+        <div class="download-info-icon">ℹ️</div>
+        <div>
+          <strong>First launch:</strong> QuameVoice automatically downloads the <code>whisper-server</code> binary (~5 MB) and a quantized Whisper model (~59 MB) to <code>~/.cache/quamevoice/</code>. This is a one-time setup.
+        </div>
+      </div>
+
+      <div class="previous-releases">
+        <a href="https://github.com/mistaquame/QuameVoice/releases" target="_blank" rel="noopener noreferrer">
+          View all releases on GitHub →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">QuameVoice</span>
+        <span class="footer-copy">MIT License — © 2025 mistaquame</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/mistaquame/QuameVoice" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/mistaquame/QuameVoice/releases" target="_blank" rel="noopener noreferrer">Releases</a>
+        <a href="https://github.com/mistaquame/QuameVoice/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
