@@ -3,31 +3,69 @@ set -euo pipefail
 
 # ──────────────────────────────────────────────
 # release.sh  —  Publish new QuameVoice version
-# Usage:  ./release.sh <version> [voice-dir]
+#
+# Auto-detects version from QuameVoice/package.json
+# and release files from QuameVoice/release/.
+#
+# Usage:  ./release.sh [voice-release-dir]
 #
 # Examples:
-#   ./release.sh v1.0.3
-#   ./release.sh v1.0.3 /path/to/QuameVoice/release
-#
-# Default voice-dir: ../QuameVoice/release
+#   ./release.sh                          # auto-detect
+#   ./release.sh ../QuameVoice/release    # explicit path
 # ──────────────────────────────────────────────
 
-if [ $# -lt 1 ]; then
-  echo "Usage: $0 <version> [voice-release-dir]"
-  echo "  version       e.g. v1.0.3"
-  echo "  voice-releasedir  path to folder with EXE + latest.yml (default: ../QuameVoice/release)"
+SITE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Find version: check release dir's parent first, then sibling ../QuameVoice
+VOICE_RELEASE="${1:-"$SITE_DIR/../QuameVoice/release"}"
+
+# Locate app dir (where package.json lives)
+APP_CANDIDATES=(
+  "$(cd "$VOICE_RELEASE/.." 2>/dev/null && pwd)"
+  "$SITE_DIR/../QuameVoice"
+)
+
+PKG=""
+for d in "${APP_CANDIDATES[@]}"; do
+  if [ -f "$d/package.json" ]; then
+    PKG="$d/package.json"
+    APP_DIR="$d"
+    break
+  fi
+done
+
+if [ -z "$PKG" ]; then
+  echo "ERROR: Can't find QuameVoice/package.json"
+  echo "       Tried: ${APP_CANDIDATES[0]} and ${APP_CANDIDATES[1]}"
+  echo "Pass release dir explicitly:  ./release.sh /path/to/QuameVoice/release"
   exit 1
 fi
 
-VERSION="$1"
-VOICE_RELEASE="${2:-"$(cd "$(dirname "$0")/../QuameVoice/release" && pwd)"}"
-SITE_DIR="$(cd "$(dirname "$0")" && pwd)"
+VER=$(grep '"version"' "$PKG" | head -1 | sed 's/.*"version": *"\([^"]*\)".*/\1/')
+VERSION="v${VER}"
 
-# Strip leading v for filename patterns
-VER="${VERSION#v}"
+# Resolve absolute path for release dir
+VOICE_RELEASE="$(cd "$VOICE_RELEASE" 2>/dev/null && pwd)" || {
+  echo "ERROR: Release directory not found: $VOICE_RELEASE"
+  exit 1
+}
 
+echo "Detected QuameVoice version: $VERSION"
+echo "App dir:                     $APP_DIR"
+echo "Release dir:                 $VOICE_RELEASE"
+echo ""
+
+# ── Paths ──
 GH_EXE="/c/Program Files/GitHub CLI/gh.exe"
 REPO="mistaquame/QuameSite"
+
+EXE="$VOICE_RELEASE/QuameVoice Setup $VER.exe"
+YML="$VOICE_RELEASE/latest.yml"
+BLOCKMAP="$VOICE_RELEASE/QuameVoice Setup $VER.exe.blockmap"
+
+# gh CLI uploads spaces as dots in filename
+EXE_DOTS="QuameVoice.Setup.$VER.exe"
+BLOCKMAP_DOTS="QuameVoice.Setup.$VER.exe.blockmap"
 
 # ── Locate token from git credential store ──
 TOKEN=$(git credential-store get <<<"protocol=https
@@ -38,17 +76,7 @@ if [ -z "$TOKEN" ]; then
   echo "Run:  gh auth login"
   exit 1
 fi
-
 export GH_TOKEN="$TOKEN"
-
-# ── Files to upload ──
-EXE="$VOICE_RELEASE/QuameVoice Setup $VER.exe"
-YML="$VOICE_RELEASE/latest.yml"
-BLOCKMAP="$VOICE_RELEASE/QuameVoice Setup $VER.exe.blockmap"
-
-# Use dots variant (gh CLI uploads spaces as dots)
-EXE_DOTS="QuameVoice.Setup.$VER.exe"
-BLOCKMAP_DOTS="QuameVoice.Setup.$VER.exe.blockmap"
 
 # ── Check files exist ──
 MISSING=0
@@ -74,6 +102,7 @@ echo "Uploading $VERSION to $REPO ..."
   --notes "Release $VERSION"
 
 echo "Upload done."
+echo ""
 
 # ── Update website files ──
 echo "Updating version references in site files ..."
@@ -92,6 +121,7 @@ sed -i "s|version: '[0-9]\+\.[0-9]\+\.[0-9]\+'|version: '$VER'|g" "$SITE_DIR/scr
 
 echo "Updated:"
 grep -n "$VER" "$SITE_DIR/index.html" "$SITE_DIR/script.js" 2>/dev/null || true
+echo ""
 
 # ── Commit & push ──
 cd "$SITE_DIR"
