@@ -42,7 +42,7 @@
         localStorage.setItem(
           'qv_download',
           JSON.stringify({
-            version: '1.0.2',
+            version: '1.0.3',
             platform: 'windows',
             time: new Date().toISOString()
           })
