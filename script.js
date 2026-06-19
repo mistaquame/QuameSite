@@ -51,6 +51,58 @@
     });
   }
 
+  // ── DOWNLOAD COUNTER (GitHub API) ──
+
+  (function fetchDownloadCount() {
+    const el = document.getElementById('dl-count');
+    if (!el) return;
+
+    // Check cache (1 hour TTL)
+    const cached = (() => {
+      try {
+        const raw = localStorage.getItem('qv_dl_count');
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        if (Date.now() - parsed.timestamp < 3600000) return parsed.count;
+        return null;
+      } catch { return null; }
+    })();
+
+    if (cached !== null) {
+      el.textContent = formatNumber(cached);
+      return;
+    }
+
+    fetch('https://api.github.com/repos/mistaquame/QuameSite/releases/latest')
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => {
+        if (!data.assets) return;
+        // Find installer asset
+        const asset = data.assets.find(a =>
+          a.name.endsWith('.exe') && a.name.includes('Setup')
+        );
+        if (!asset || asset.download_count === undefined) return;
+        const count = asset.download_count;
+        el.textContent = formatNumber(count);
+        try {
+          localStorage.setItem('qv_dl_count', JSON.stringify({
+            count,
+            timestamp: Date.now()
+          }));
+        } catch { /* storage unavailable */ }
+      })
+      .catch(() => {
+        // Leave '—' or fallback to something
+        el.textContent = 'N/A';
+      });
+
+    function formatNumber(n) {
+      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+      return n.toString();
+    }
+  })();
+
   // ── VIDEO PLAYBACK FALLBACK ──
 
   const videos = document.querySelectorAll('video.promo-video');
