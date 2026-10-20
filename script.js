@@ -140,7 +140,7 @@
     );
 
     document.querySelectorAll(
-      '.feature-card, .download-card, .how-step, .download-info-card'
+      '.feature-item, .download-panel, .timeline-step, .download-info'
     ).forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
