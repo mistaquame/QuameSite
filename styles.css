@@ -118,7 +118,7 @@ code {
 }
 
 .section {
-  padding: 140px 0;
+  padding: 80px 0;
 }
 
 /* ── NAVBAR ── */
@@ -147,25 +147,23 @@ code {
   font-family: var(--font-mono);
   color: var(--accent);
   letter-spacing: 0.02em;
+  padding-right: 32px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 40px;
 }
 
 .nav-links a {
   color: var(--text-dim);
   font-size: 14px;
   font-weight: 400;
-  padding: 12px 0;
-  margin-left: 32px;
+  padding: 16px 12px;
+  margin: -16px -12px;
   transition: color 0.2s;
-}
-
-.nav-links a:first-child {
-  margin-left: 0;
+  display: inline-block;
 }
 
 .nav-links a:hover {
@@ -173,16 +171,14 @@ code {
 }
 
 .nav-download-btn {
-  padding: 12px 24px;
-  border: 2px solid var(--accent);
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
   color: var(--accent) !important;
   font-family: var(--font-mono);
   font-size: 13px !important;
   letter-spacing: 0.02em;
   font-weight: 500 !important;
   transition: all 0.2s !important;
-  min-width: 100px;
-  text-align: center;
 }
 
 .nav-download-btn:hover {
