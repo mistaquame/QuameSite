@@ -152,15 +152,20 @@ code {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 64px;
 }
 
 .nav-links a {
   color: var(--text-dim);
   font-size: 14px;
   font-weight: 400;
-  padding: 8px 0;
+  padding: 12px 0;
+  margin-left: 32px;
   transition: color 0.2s;
+}
+
+.nav-links a:first-child {
+  margin-left: 0;
 }
 
 .nav-links a:hover {
@@ -168,14 +173,16 @@ code {
 }
 
 .nav-download-btn {
-  padding: 10px 20px;
-  border: 1px solid var(--accent);
+  padding: 12px 24px;
+  border: 2px solid var(--accent);
   color: var(--accent) !important;
   font-family: var(--font-mono);
   font-size: 13px !important;
   letter-spacing: 0.02em;
   font-weight: 500 !important;
   transition: all 0.2s !important;
+  min-width: 100px;
+  text-align: center;
 }
 
 .nav-download-btn:hover {
