@@ -33,22 +33,27 @@
   // Dynamic import so browsers without WebGPU never download the bundle
   const { createShader } = await import('https://esm.sh/shaders@4.0.4/js');
 
-  // Black base + vignette. No colored gradients — just subtle edge darkening
-  // to give depth without competing with foreground content.
+  // One soft ember glow anchored at the top-center, fading to pure black.
+  // RadialGradient with a tight bounding box so it reads as ambient light,
+  // not a shape. Everything below stays black — text sits on darkness.
   const shader = await createShader(canvas, {
     components: [
       {
-        type: 'SolidColor',
-        id: 'black',
-        props: { color: '#000000' },
-      },
-      {
-        type: 'Vignette',
-        id: 'vignette',
+        type: 'RadialGradient',
+        id: 'ember',
         props: {
-          color: '#000000',
-          intensity: 0.5,
-          radius: 0.7,
+          colorA: '#3d1a00',
+          colorB: '#000000',
+          center: { x: 0.5, y: -0.15 },
+          colorSpace: 'oklab',
+          // Confine the glow to the upper third of the viewport
+          boundingBox: {
+            x: { unit: 'uv', value: 0 },
+            y: { unit: 'uv', value: 0 },
+            width: { unit: 'uv', value: 1 },
+            height: { unit: 'uv', value: 0.7 },
+            origin: 'top-left',
+          },
         },
       },
     ],

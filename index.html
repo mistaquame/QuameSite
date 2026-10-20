@@ -9,12 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261020a" />
 </head>
 <body>
 
   <!-- WebGPU shader background -->
-  <canvas id="shader-bg" aria-hidden="true"></canvas>
+  <canvas id="shader-bg" aria-hidden="true" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0"></canvas>
   <!-- CSS fallback orbs -->
   <div class="ambient-orbs" id="css-fallback-orbs">
     <div class="orb orb-1"></div>
@@ -213,7 +213,7 @@ npm run dist</div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script type="module" src="shader-bg.js"></script>
+  <script src="script.js?v=20261020a"></script>
+  <script type="module" src="shader-bg.js?v=20261020a"></script>
 </body>
 </html>
