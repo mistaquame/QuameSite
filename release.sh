@@ -63,9 +63,15 @@ EXE="$VOICE_RELEASE/QuameVoice Setup $VER.exe"
 YML="$VOICE_RELEASE/latest.yml"
 BLOCKMAP="$VOICE_RELEASE/QuameVoice Setup $VER.exe.blockmap"
 
-# gh CLI uploads spaces as dots in filename
-EXE_DOTS="QuameVoice.Setup.$VER.exe"
-BLOCKMAP_DOTS="QuameVoice.Setup.$VER.exe.blockmap"
+# Uploaded asset names must match latest.yml (electron-updater downloads by that
+# name); gh would turn the spaces in the local filename into dots, so upload
+# hyphenated copies.
+EXE_DOTS="QuameVoice-Setup-$VER.exe"
+BLOCKMAP_DOTS="QuameVoice-Setup-$VER.exe.blockmap"
+EXE_UPLOAD="$VOICE_RELEASE/$EXE_DOTS"
+BLOCKMAP_UPLOAD="$VOICE_RELEASE/$BLOCKMAP_DOTS"
+cp "$EXE" "$EXE_UPLOAD"
+cp "$BLOCKMAP" "$BLOCKMAP_UPLOAD"
 
 # ── Locate token from git credential store ──
 TOKEN=$(git credential-store get <<<"protocol=https
